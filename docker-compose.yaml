@@ -1,0 +1,33 @@
+version: '3.7'
+
+volumes:
+  static:
+  media:
+    
+services:
+
+  web:
+    tty: true
+    build: .
+    restart: always
+    env_file:
+      - ./.env
+    volumes:
+      - ./static:/code/static/
+      - ./media:/code/media/
+    command: gunicorn school.wsgi:application --bind 0.0.0.0:8000
+
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./static:/code/static/
+      - ./media:/code/media/
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+
+  

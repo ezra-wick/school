@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block static %}
+<link type='text/css' rel="stylesheet" href="{% static 'css/index.css' %}" async>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid pb-5 shadow-lg p-3 rounded bg-img " style="background-image: url({% static '/media/cover.jpg' %});">
+    <br>
+    <br>
+    <div class="row txt-shadow text-white align-items-center justify-content-center noselect" >
+        <h1>
+        <div class="col-12 col-sm-6 offset-sm-3 col-lg-4 offset-lg-4 text-left">
+            Инновации
+        </div>
+        <div class="col-12 col-sm-6 offset-sm-3 col-lg-4 offset-lg-4 text-center">
+            Cтартапы
+        </div>
+        <div class="col-12 col-sm-6 offset-sm-3 col-lg-4 offset-lg-4 text-end">
+            Технологии
+        </div>
+        </h1>
+    </div>
+
+</div>
+<div class="container ">
+
+    <br>
+
+    <div class="row text-end pb-3">
+        <div class="col-12 col-sm-10 offset-sm-1 d-flex align-items-center justify-content-end">
+            <p class="fst-italic link-dark mb-0">
+                Мы постараемся ответить как можно скорее! 
+            </p>&nbsp;&nbsp;
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#FeedBack">
+            Оставить заявку
+          </button>
+
+        </div>
+        {% include 'main/email_form.html' %}
+        
+    </div>
+        
+
+        {% for block in blocks %}
+            {% if block.tag == 'sites-add' %}
+        
+            <div class='col-12 col-sm-10 offset-sm-1 justify-content-end'>
+            <h1 class="text-to-right">{{block.title}}</h1>
+
+            </div>
+
+            <div class="row justify-content-center align-items-center border rounded p-3 m-3 shadow-lg rounded">
+                    {% for img in block.block_image.all %}
+                        <div class="col-12 col-md-6 px-5 pt-1">
+                            <div class="photocard" style="background-image: url({{img.image.url}});">
+                            </div>
+                        </div>
+                    
+                    {% endfor%}
+                    
+                    <br>
+                    <div class='col-12 col-md-6 text-justify pt-1'>
+                        <p class=""><b class="fs-4 lh-lg font-monospace">{{block.text|linebreaksbr }}</b></p> <br>
+                    </div>
+
+
+            </div>
+           
+      
+            {% elif block.tag == 'programms' %}
+        
+            <div class='col-12 col-sm-10 offset-sm-1 '>
+                <h1 class="text-end">{{block.title}}</h1>
+    
+                </div>
+    
+                <div class="row justify-content-center align-items-center border rounded p-3 m-3 shadow-lg rounded">
+            
+
+                        
+                        <br>
+                        <div class='col-12 col-md-6 text-justify'>
+                            <p class="fs-5 lh-base font-monospace">{{block.text|linebreaksbr }}</p> <br>
+                        </div>
+    
+                        {% for img in block.block_image.all %}
+                        <div class="col-12 col-md-6 px-5">
+                            <div class="photocard" style="background-image: url({{img.image.url}});">
+                            </div>
+                        </div>
+                    
+                        {% endfor%}
+                </div>
+
+            {% endif %}
+            <br><br><br>
+
+        {% endfor %}
+
+
+
+    </div>
+</div>
+{% endblock %}

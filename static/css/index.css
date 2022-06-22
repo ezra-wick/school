@@ -1,0 +1,131 @@
+.photocard {
+    background-color: #e8eaed;
+    background-size: cover;
+    border-radius: 8px;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 100%;
+    position: relative;
+    transition: all .135s cubic-bezier(0,0,.2,1);
+    width: 100%;
+}
+
+h1 {
+    color: white !important;
+    text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+
+}
+
+@media (min-width: 0px) {
+    span {
+        font-size: 10px;
+    }
+
+    .hide {
+        display: None !important;
+    }
+
+    .text-to-right {
+        margin-left : 60px;
+    }
+
+  }
+
+
+@media (min-width: 576px) {
+    span {
+        font-size: 10px;
+    }
+
+    .hide {
+        display: None !important;
+    }
+
+    .text-to-right {
+        margin-left : 60px;
+    }
+
+  }
+
+@media (min-width: 768px) {
+    span {
+        font-size: small;
+    }
+
+    .hide {
+        display: None !important;
+    }
+
+    .text-to-right {
+        margin-left : 0px;
+    }
+
+  }
+
+@media (min-width: 992px) {
+    span {
+        font-size: medium;
+    }
+
+    .hide {
+        display: block !important;
+    }
+
+    .hide_bg {
+        display: None !important;
+    }
+
+    .text-to-right {
+        margin-left : 0px;
+    }
+
+  }
+
+@media (min-width: 1200px) {
+    span {
+        font-size: large;
+    }
+    
+    .hide {
+        display: block !important;
+    }
+
+    .hide_bg {
+        display: None !important;
+    }
+
+    .text-to-right {
+        margin-left : 0px;
+    }
+
+
+  }
+
+.txt-shadow{
+    text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }
+
+input::placeholder {
+    left:0 !important;
+    top:0 !important;
+}
+
+.a {
+    text-decoration: none !important;
+}
+
+.bg-img {
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+}
