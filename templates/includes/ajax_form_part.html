@@ -1,0 +1,37 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLiveLabel">Оставить заявку</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="taskitem_form" method="post" action="/">
+      <div class="modal-body col-12 col-sm-8 offset-sm-2 text-start">
+        
+      
+      {% csrf_token %}
+      {% for field in form %}
+      
+          {{field.label}}
+          {% if field == form.name or field == form.email%}
+              <a class="text-danger" style="text-decoration: none !important;">*</a>
+          {% endif %}
+          <br>
+          {{field}}
+          <br>
+          {% for error in field.errors %}
+          <div style="color:red;">
+              <strong>{{ error|escape }}</strong>
+          </div>
+        {% endfor %}
+      {% endfor %}
+
+      </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        <button type="button" onclick="check_form()"  class="btn btn-primary"/>
+        Отправить
+        </button>
+      </div>
+    </div>
+  </div>

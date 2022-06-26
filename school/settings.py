@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv 
 
-#load_dotenv()
+load_dotenv() # ЭТО НУЖНО ЧТОБЫ ПОДГРУЖАТЬ ДАННЫЕ ИЗ .ENV
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -12,7 +12,7 @@ SECRET_KEY = '=)&%=-1#oz_hld(l80^6)o33jbomyivm%w@y_%g@)$-u)s$^=)'
             
 
 
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.getenv('DEBUG')  # БЕЗ ЭТОГО НЕ БУДУТ РАБОТАТЬ СТИЛИ
 
 
 ALLOWED_HOSTS = ['*',]
