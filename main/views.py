@@ -36,3 +36,25 @@ def check_form(request):
             )
 
         return render(request, 'includes/ajax_form_part.html', context)
+
+def check_feeld(request):
+    if request.method == 'POST':
+        print(request.POST)
+        phone = request.POST["phone"]
+        email = request.POST["email"]
+        print(email)
+        if phone=='none' and email!='' and email!='none':
+            print(FeedBack.objects.filter(email=email).exists())
+            if not FeedBack.objects.filter(email=email):
+                return JsonResponse({"status":"ok","error_email": ""}, status="200", safe=False, json_dumps_params={"ensure_ascii" : False})
+            else:
+                return JsonResponse({"status":"error","error_email": "Заявка с таким email уже существует!"}, status="200", safe=False, json_dumps_params={"ensure_ascii" : False})
+        if email=='none' and phone!='' and phone!='none':
+            if phone[0] == "8":
+                phone2 = "+7" + phone[1:len(phone)]
+            else:
+                phone2 = "8" + phone[2:len(phone)]
+            if (not FeedBack.objects.filter(phone=phone)) and (not FeedBack.objects.filter(phone=phone2)):
+                return JsonResponse({"status":"ok","error_phone": ""}, status="200", safe=False, json_dumps_params={"ensure_ascii" : False})
+            else:
+                return JsonResponse({"status":"error","error_phone": "Заявка с таким телефоном уже существует!"}, status="200", safe=False, json_dumps_params={"ensure_ascii" : False})
