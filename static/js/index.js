@@ -21,4 +21,20 @@ var check_form = function () { /// сама функция
         }
         }
       })}
-  
+
+
+var options = {
+  byRow: false,
+  property: 'min-height',
+  target: null,
+  remove: false
+}
+
+$( document ).ready(function() {
+  $("div[name='site-card']").matchHeight(options);
+  console.log('done')
+})
+$(window).resize(function() {
+  $("div[name='site-card']").matchHeight(options);
+  console.log('done')
+})

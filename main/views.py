@@ -10,6 +10,14 @@ def index(request):
 
     context = {}
     context['blocks'] = Block.objects.all()
+    context['sites_add'] = Block.objects.get(tag='sites-add')
+    context['sites_add_list'] = [text.replace('\r', '') for text in Block.objects.get(tag='sites-add').text.split('\n')]
+    context['sites_dict'] = {}
+    for site_type in context['sites_add_list']:
+        context['sites_dict'][site_type] = f'/media/{site_type}.png'
+    
+    context['programms'] = Block.objects.get(tag='programms')
+
     context['form'] = FeedBackForm()
 
     return render(request, 'main/index.html', context)

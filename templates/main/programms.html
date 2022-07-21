@@ -1,0 +1,22 @@
+{% load static %}
+
+<div class="container-fluid py-5 px-0 mx-0" style="">
+    <br>
+    <br>
+    <div class="row no-gutters align-items-center noselect title larger-div mx-0 px-0" style="background-color: #5465FF">
+        {% for img in programms.block_image.all %}
+        <div class="col-lg-6 text-center rounded hide-img">
+        <div class="rounded photocard hide-img" style="background-image: url({{img.image.url}});">
+        </div>
+        </div>
+        {% endfor%}
+        <div class="col-lg-6 text-start text-white px-2 py-5">
+       
+            <h3 class="fs-1 pb-5 px-3">{{programms.title}}</h3>
+            <p class="fs-4 px-3">{{programms.text}}</p>
+          
+        </div>
+
+    </div>
+</div>
+
