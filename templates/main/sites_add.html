@@ -1,0 +1,27 @@
+{% load static %}
+
+<div class="container-fluid py-5" style="">
+    <br>
+    <br>
+    <div class="row align-items-center noselect title pb-5">
+        <div class="col text-center">
+            <h3 class="fs-1">{{sites_add.title}}</h3>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row align-items-center noselect title" >
+         {% for site, icon in sites_dict.items %}
+            <div class="col-6 col-md-3 p-2 text-center">
+                <div class="border rounded px-3 py-5 shadowbox larger-text" name="site-card">
+                    <img class="mb-3" src="{% static icon %}">
+                    <br>
+            
+                        {{site}}
+                 
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+

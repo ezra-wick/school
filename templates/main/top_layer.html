@@ -1,0 +1,24 @@
+{% load static %}
+
+<div class="container-fluid shadow-lg rounded bg-img pb-5" style="background-image: url({% static '/media/top_layer.jpg' %});">
+    <br>
+    <br>
+    <div class="container">
+        <div class="row txt-shadow text-white align-items-center noselect title py-5" >
+            <div class="col-lg-10 col-md-10 mb-4">
+                <h1 class="display-3 position-sticky blink_me">
+                    <nobr>Мы представляем</nobr>
+                    небольшую компанию
+                    <nobr>it-специалистов</nobr>
+                    <nobr>готовых помочь</nobr>
+                    <nobr>вам в реализации </nobr>
+                    <nobr>любых решений</nobr>
+                    <nobr>для ваших</nobr>
+                    <nobr>текущих задач.</nobr>
+                </h1>
+            </div>
+        {% include 'includes/email_button.html' %}
+            
+        </div>
+    </div>
+</div>
