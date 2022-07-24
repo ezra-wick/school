@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.dateformat import *
 import re
 
 # Create your models here.
@@ -73,6 +74,9 @@ class FeedBack(models.Model):
     name = models.CharField(max_length=50, verbose_name="Имя", null=True, blank=True, unique=True)
     email = models.CharField(max_length=80, verbose_name="Имя", null=True, blank=True, unique=True)
     text = models.CharField(max_length=500, verbose_name="Сообщение", null=True, blank=True)
+    datetime_create = models.DateTimeField(auto_now_add=True, verbose_name="Дата и время создания")
+    complete = models.BooleanField(default=False, verbose_name="Отметка о выполнении")
+
     def save_phone(self, phone):
         phone = re.sub(r'\+?[78](\d{3})(\d{3})(\d\d)(\d\d)', r'+7\1\2\3\4', phone)
         if phone[0] == '9' and len(phone) == 10:
@@ -86,4 +90,4 @@ class FeedBack(models.Model):
         verbose_name_plural = 'Заявки'
 
     def __str__(self):
-        return self.name
+        return self.name + " Дата и время создания: %s"  % (format(self.datetime_create, "d.m.Y H:i"))
