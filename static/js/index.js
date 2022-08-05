@@ -38,3 +38,13 @@ $(window).resize(function() {
   $("div[name='site-card']").matchHeight(options);
   console.log('done')
 })
+
+
+$( document ).ready(function() {
+  $("div[name='bot-card']").matchHeight(options);
+  console.log('done')
+})
+$(window).resize(function() {
+  $("div[name='bot-card']").matchHeight(options);
+  console.log('done')
+})

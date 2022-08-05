@@ -2,8 +2,8 @@
 {% load static %}
 {% block static %}
 <link type='text/css' rel="stylesheet" href="{% static 'css/index.css' %}">
-<link type='text/css' rel="stylesheet" href="{% static 'css/boot.scss' %}">
-
+<link type='text/css' rel="stylesheet" href="{% static 'css/boots.scss' %}">
+<link type='text/css' rel="stylesheet" href="{% static 'css/flipcard.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -14,7 +14,7 @@
 
 {% include 'main/programms.html' %}
 
-
+{% include 'main/bots.html' %}
 {% comment %} 
         {% for block in blocks %}
             {% if block.tag == 'sites-add' %}
