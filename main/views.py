@@ -6,23 +6,22 @@ from .forms import FeedBackForm
 from django import forms
 
 
-def index(request):
+def create_block_dict_with_icons(context, tag):
+    context[tag] = Block.objects.get(tag=tag)
+    context[f'{tag}_list'] = [text.replace('\r', '') for text in context[tag].text.split('\n')]
+    context[f'{tag}_dict'] = {}
+    for key in context[f'{tag}_list']:
+        context[f'{tag}_dict'][key] = f'/media/{key}.png'
 
+
+def index(request):
     context = {}
     context['blocks'] = Block.objects.all()
-    context['sites_add'] = Block.objects.get(tag='sites-add')
-    context['sites_add_list'] = [text.replace('\r', '') for text in Block.objects.get(tag='sites-add').text.split('\n')]
-    context['sites_dict'] = {}
-    for site_type in context['sites_add_list']:
-        context['sites_dict'][site_type] = f'/media/{site_type}.png'
-    
+    create_block_dict_with_icons(context, 'sites_add')
+    create_block_dict_with_icons(context, 'bots')
     context['programms'] = Block.objects.get(tag='programms')
-
     context['form'] = FeedBackForm()
-
     return render(request, 'main/index.html', context)
-
-
 
 
 def check_form(request):
@@ -42,8 +41,8 @@ def check_form(request):
                 'status':'success'
             }
             )
-
         return render(request, 'includes/ajax_form_part.html', context)
+
 
 def check_feeld(request):
     if request.method == 'POST':

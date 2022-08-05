@@ -1,0 +1,31 @@
+{% load static %}
+
+<div class="container-fluid py-5" style="">
+    <br>
+    <br>
+    <div class="row align-items-center noselect title pb-5">
+        <div class="col text-center">
+            <h3 class="fs-1">{{bots.title}}</h3>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row align-items-center noselect title" >
+         {% for bot, icon in bots_dict.items %}
+
+         <div class="flip-card col-6 col-md-4 col-lg-3 p-2 text-center">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="{% static icon %}" alt="{{bot}}" class="mb-3 img-fluid border-0">
+              </div>
+              <div class="flip-card-back d-flex align-items-center justify-content-center rounded">
+                <h3 class="fs-6">{{bot}}</h3>
+              </div>
+            </div>
+          </div>
+
+
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
