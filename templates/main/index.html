@@ -2,7 +2,7 @@
 {% load static %}
 {% block static %}
 <link type='text/css' rel="stylesheet" href="{% static 'css/index.css' %}">
-<link type='text/css' rel="stylesheet" href="{% static 'css/boots.scss' %}">
+<link type='text/css' rel="stylesheet" href="{% static 'css/boots.css' %}">
 <link type='text/css' rel="stylesheet" href="{% static 'css/flipcard.css' %}">
 {% endblock %}
 
@@ -15,67 +15,7 @@
 {% include 'main/programms.html' %}
 
 {% include 'main/bots.html' %}
-{% comment %} 
-        {% for block in blocks %}
-            {% if block.tag == 'sites-add' %}
-        
-            <div class='col-12 col-sm-10 offset-sm-1 justify-content-end'>
-            <h1 class="text-to-right">{{block.title}}</h1>
 
-            </div>
-
-            <div class="row justify-content-center align-items-center border rounded p-3 m-3 shadow-lg rounded">
-                    {% for img in block.block_image.all %}
-                        <div class="col-12 col-md-6 px-5 pt-1">
-                            <div class="photocard" style="background-image: url({{img.image.url}});">
-                            </div>
-                        </div>
-                    
-                    {% endfor%}
-                    
-                    <br>
-                    <div class='col-12 col-md-6 text-justify pt-1'>
-                        <p class=""><b class="fs-4 lh-lg font-monospace">{{block.text|linebreaksbr }}</b></p> <br>
-                    </div>
-
-
-            </div>
-           
-      
-            {% elif block.tag == 'programms' %}
-        
-            <div class='col-12 col-sm-10 offset-sm-1 '>
-                <h1 class="text-end">{{block.title}}</h1>
-    
-                </div>
-    
-                <div class="row justify-content-center align-items-center border rounded p-3 m-3 shadow-lg rounded">
-            
-
-                        
-                        <br>
-                        <div class='col-12 col-md-6 text-justify'>
-                            <p class="fs-5 lh-base font-monospace">{{block.text|linebreaksbr }}</p> <br>
-                        </div>
-    
-                        {% for img in block.block_image.all %}
-                        <div class="col-12 col-md-6 px-5">
-                            <div class="photocard" style="background-image: url({{img.image.url}});">
-                            </div>
-                        </div>
-                    
-                        {% endfor%}
-                </div>
-
-            {% endif %}
-            <br><br><br>
-
-        {% endfor %} {% endcomment %}
-
-
-
-    </div>
-</div>
 <script src="{% static '/js/index.js'%}"></script>
 <script src="{% static '/js/ajax_button_unlock.js'%}"></script>
 <script src="{% static '/js/jquery.matchHeight.js'%}" type="text/javascript"></script>

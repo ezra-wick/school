@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.dateformat import *
+from django.utils import timezone
 import re
 
 # Create your models here.
@@ -72,10 +73,13 @@ class BlockImage(models.Model):
 class FeedBack(models.Model):
     phone = models.CharField(max_length=16, verbose_name="Телефон", null=True, blank=True, unique=True)
     name = models.CharField(max_length=50, verbose_name="Имя", null=True, blank=True, unique=True)
-    email = models.CharField(max_length=80, verbose_name="Имя", null=True, blank=True, unique=True)
+    email = models.CharField(max_length=80, verbose_name="email", null=True, blank=True, unique=True)
     text = models.CharField(max_length=500, verbose_name="Сообщение", null=True, blank=True)
-    datetime_create = models.DateTimeField(auto_now_add=True, verbose_name="Дата и время создания")
+    datetime_create = models.DateTimeField(default=timezone.now, verbose_name="Дата и время создания")
     complete = models.BooleanField(default=False, verbose_name="Отметка о выполнении")
+    user_last_change = models.ForeignKey("BotUsers", null=True,  blank=True,  on_delete=models.SET_NULL)
+    datetime_complete = models.DateTimeField(null=True, blank=True, verbose_name="Дата и время отработки заявки")
+
 
     def save_phone(self, phone):
         phone = re.sub(r'\+?[78](\d{3})(\d{3})(\d\d)(\d\d)', r'+7\1\2\3\4', phone)
@@ -90,4 +94,17 @@ class FeedBack(models.Model):
         verbose_name_plural = 'Заявки'
 
     def __str__(self):
-        return self.name + " Дата и время создания: %s"  % (format(self.datetime_create, "d.m.Y H:i"))
+        return self.name + " Дата и время создания: %s" % (format(self.datetime_create, "d.m.Y H:i"))
+
+class BotUsers(models.Model):
+     username = models.CharField(max_length=50, verbose_name="Имя пользователя", unique=True)
+     first_name = models.CharField(max_length=50, verbose_name="Имя", null=True, blank=True)
+     last_name = models.CharField(max_length=50, verbose_name="Фамилия", null=True, blank=True)
+     userid = models.IntegerField(verbose_name="user_id", unique=True)
+
+     class Meta:
+         verbose_name = 'User'
+         verbose_name_plural = 'Адресаты рассылки'
+
+     def __str__(self):
+         return self.username

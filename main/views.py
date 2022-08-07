@@ -13,10 +13,10 @@ def create_block_dict_with_icons(context, tag):
     for key in context[f'{tag}_list']:
         context[f'{tag}_dict'][key] = f'/media/{key}.png'
 
-
 def index(request):
     context = {}
     context['blocks'] = Block.objects.all()
+    create_block_dict_with_icons(context, 'sites_add')
     create_block_dict_with_icons(context, 'sites_add')
     create_block_dict_with_icons(context, 'bots')
     context['programms'] = Block.objects.get(tag='programms')
