@@ -1,10 +1,17 @@
-from django.shortcuts import render, redirect
-from .models import Block, BlockImage, FeedBack
-from django.http import HttpResponseRedirect, JsonResponse
-from django.views.generic import View
+from django.shortcuts import render
+from main.models import Block, FeedBack, BotUsers
+from django.http import JsonResponse
 from .forms import FeedBackForm
-from django import forms
 
+def start_bot(request):
+    import os
+    from aiogram import Bot, Dispatcher, executor
+    from dotenv import load_dotenv
+    load_dotenv()
+
+    bot = Bot(token=os.getenv('TOKEN'))
+    dp = Dispatcher(bot)
+    executor.start_polling(dp, skip_updates=True)
 
 def create_block_dict_with_icons(context, tag):
     context[tag] = Block.objects.get(tag=tag)
@@ -37,6 +44,13 @@ def check_form(request):
             # feedback.phone = phone
             # feedback.email = email
             # feedback.save()
+            from main.management.commands.commands import send_message
+            from concurrent.futures import ThreadPoolExecutor
+            from asyncio import run
+            bot_mailing_list_recipients = BotUsers.objects.all()
+            for user in bot_mailing_list_recipients:
+                pool = ThreadPoolExecutor()
+                pool.submit(run, send_message(user.userid, "Есть новая заявка!")).result()
             return JsonResponse({
                 'status':'success'
             }
