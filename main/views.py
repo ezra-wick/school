@@ -44,13 +44,15 @@ def check_form(request):
             # feedback.phone = phone
             # feedback.email = email
             # feedback.save()
-            from main.management.commands.commands import send_message
+
+            from main.management.commands.commands import send_message #Импортируем функцию для отправки сообщения
+            #Чтобы в синхронной функции выполнять асинхронный код нужно создать нужно добавить поток управления асинхронным кодом
             from concurrent.futures import ThreadPoolExecutor
             from asyncio import run
-            bot_mailing_list_recipients = BotUsers.objects.all()
+            bot_mailing_list_recipients = BotUsers.objects.all() #Получаем пользователей для рассылки
             for user in bot_mailing_list_recipients:
-                pool = ThreadPoolExecutor()
-                pool.submit(run, send_message(user.userid, "Есть новая заявка!")).result()
+                pool = ThreadPoolExecutor() #Создаем поток для выполнения асинхронного кода для каждого пользователя
+                pool.submit(run, send_message(user.userid, "Есть новая заявка!")).result()   #Запускаем отправку.
             return JsonResponse({
                 'status':'success'
             }
