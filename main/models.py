@@ -97,7 +97,7 @@ class FeedBack(models.Model):
         return self.name + " Дата и время создания: %s" % (format(self.datetime_create, "d.m.Y H:i"))
 
 class BotUsers(models.Model):
-     username = models.CharField(max_length=50, verbose_name="Имя пользователя", unique=True)
+     username = models.CharField(max_length=50, verbose_name="Имя пользователя")
      first_name = models.CharField(max_length=50, verbose_name="Имя", null=True, blank=True)
      last_name = models.CharField(max_length=50, verbose_name="Фамилия", null=True, blank=True)
      userid = models.IntegerField(verbose_name="user_id", unique=True)

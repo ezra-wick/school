@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Block, BlockImage, FeedBack, BotUsers
+from main.models import Block, BlockImage, FeedBack, BotUsers
 # Register your models here.
 
 

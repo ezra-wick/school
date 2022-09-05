@@ -1,6 +1,5 @@
 from django import forms
-from .models import FeedBack
-import re
+from main.models import FeedBack
 from django.utils.translation import gettext_lazy as _
 
 class FeedBackForm(forms.ModelForm):

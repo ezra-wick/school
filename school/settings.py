@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'crispy_forms',
+    #'TeleBot_FeedBackManager',
+    #"FeedBack_teleBot"
 ]
 
 MIDDLEWARE = [
